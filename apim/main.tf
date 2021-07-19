@@ -2,11 +2,13 @@ provider "azurerm" {
   features {}
 }
 
+#Criação de Resource Group onde o recurso ficará alocado
 resource "azurerm_resource_group" "rg" {
   name     = "${var.prefix}-resources"
   location = var.location
 }
 
+#Criação do APIM Management
 resource "azurerm_api_management" "apim_service" {
   name                = "${var.prefix}-apim-service"
   location            = var.location
