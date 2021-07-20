@@ -1,3 +1,4 @@
 apim/.terraform.lock.hcl
 apim/.terraform/terraform.tfstate
 apim/.terraform/providers/registry.terraform.io/hashicorp/azurerm/2.68.0/linux_amd64/terraform-provider-azurerm_v2.68.0_x5
+/home/thiago/templates/apim/.terraform
