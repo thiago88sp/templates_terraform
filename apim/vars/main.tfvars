@@ -1,3 +1,3 @@
-prefix    = apim-lab
-location  = brazilsouth
-sku       = Developer_1
+prefix    = "apim-lab"
+location  = "Brazil South"
+sku       = "Developer_1"

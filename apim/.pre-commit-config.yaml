@@ -1,0 +1,6 @@
+repos:
+- repo: git: //github.com/antonbabenko/pre-commit-terraform
+rev: v1.30.0 # Obtenha o mais recente em: https://github.com/antonbabenko/pre-commit-terraform/releases
+ganchos:
+- id: terraform_fmt
+- id: terraform_docs
