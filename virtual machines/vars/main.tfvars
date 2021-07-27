@@ -1,3 +1,3 @@
-prefix    = lb-lab
-location  = brazilsouth
-size      = Standard_F2
+prefix    = "lb-lab"
+location  = "brazilsouth"
+size      = "Standard_F2"

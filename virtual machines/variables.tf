@@ -12,3 +12,8 @@ variable "size" {
   type        = string
   description = "The VM Size in which you need choose for your VM."
 }
+
+#variable "rsg" {
+#  type        = string
+#  description = "RSG where the resources are be allocated."
+#}
