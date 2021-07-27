@@ -8,6 +8,7 @@ resource "azurerm_resource_group" "rsg" {
   location = var.location
 }
 
+#Criação de Virtual Network
 resource "azurerm_virtual_network" "vnet" {
   name                = "${var.prefix}-network"
   address_space       = ["10.0.0.0/16"]
@@ -15,6 +16,7 @@ resource "azurerm_virtual_network" "vnet" {
   resource_group_name = azurerm_resource_group.rsg.name
 }
 
+#Criação de Subnet
 resource "azurerm_subnet" "internal" {
   name                 = "Subnet_A"
   resource_group_name  = azurerm_resource_group.rsg.name
@@ -22,6 +24,7 @@ resource "azurerm_subnet" "internal" {
   address_prefixes     = ["10.0.2.0/24"]
 }
 
+#Criação de NIC
 resource "azurerm_network_interface" "nic" {
   name                = "${var.prefix}-nic"
   resource_group_name = azurerm_resource_group.rsg.name
@@ -34,6 +37,7 @@ resource "azurerm_network_interface" "nic" {
   }
 }
 
+#Criação de Máquina Virtual
 resource "azurerm_windows_virtual_machine" "vm" {
   name                            = "${var.prefix}-vm"
   resource_group_name             = azurerm_resource_group.rsg.name
