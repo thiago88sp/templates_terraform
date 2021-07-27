@@ -1,0 +1,5 @@
+resource_group_name   = "tstate"
+storage_account_name  = "statstate"
+container_name        = "labstate"
+key                   = "labloadbalancer.tfstate"
+access_key            = "WTGf7jO9654iGDYEVoH5qpd472Mkk1g4Xn8Se8vVQmWlUFehWGTOHRkh8lIlKW84OOMkbip88Hc4042xpGraLA=="
