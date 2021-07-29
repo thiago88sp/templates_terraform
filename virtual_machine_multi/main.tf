@@ -96,7 +96,7 @@ resource "azurerm_windows_virtual_machine" "vm" {
   size                            = var.size
   admin_username                  = "adminuser"
   admin_password                  = "P@ssw0rd1234!"
-  zone                            = "1"
+  #zone                            = "1"
   network_interface_ids = [
     element(azurerm_network_interface.example_nic.*.id, count.index)
   ]
