@@ -88,7 +88,6 @@ terraform plan -var-file vars/main.tfvars
 #Perform the terraform apply. The terraform apply command executes the actions proposed in a Terraform plan.
 terraform apply -var-file vars/main.tfvars
 
-# The server will initialize in the <http://localhost:3000>
 ```
 
 ## :memo: License ##
