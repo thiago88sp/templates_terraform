@@ -8,25 +8,18 @@ resource "azurerm_resource_group" "rg" {
   location = var.location
 }
 
-#Criação do APIM Management
-resource "azurerm_api_management" "apim_service" {
-  name                = "${var.prefix}-apim-service"
+# NOTE: the Name used for Redis needs to be globally unique
+resource "azurerm_redis_cache" "example" {
+  name                = "${var.prefix}-redis"
   location            = var.location
   resource_group_name = azurerm_resource_group.rg.name
-  publisher_name      = "Example Publisher"
-  publisher_email     = "publisher@example.com"
-  sku_name            = var.sku
-  tags = {
-    Environment = "Example"
-  }
-  policy {
-    xml_content = <<XML
-    <policies>
-      <inbound />
-      <backend />
-      <outbound />
-      <on-error />
-    </policies>
-XML
+  capacity            = 2
+  family              = "C"
+  sku_name            = var.sku_name
+  enable_non_ssl_port = false
+  minimum_tls_version = "1.2"
+
+  redis_configuration {
   }
 }
+

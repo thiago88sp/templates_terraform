@@ -1,3 +1,3 @@
-prefix    = apim-lab
-location  = brazilsouth
-sku       = Developer_1
+prefix    = "redis-lab"
+location  = "Brazil South"
+sku_name  = "Standard"
