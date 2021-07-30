@@ -9,13 +9,13 @@
 <h1 align="center">Redis</h1>
 
 <p align="center">
-  <img alt="Github top language" src="  https://img.shields.io/github/languages/top/{{thiago88sp}}/redis?color=56BEB8">
+  <img alt="Github top language" src="  https://img.shields.io/github/languages/top/{{github.com/thiago88sp}}/redis?color=56BEB8">
 
   <img alt="Github language count" src="https://img.shields.io/github/languages/count/{{thiago88sp}}/redis?color=56BEB8">
 
   <img alt="Repository size" src="https://img.shields.io/github/repo-size/{{thiago88sp}}/redis?color=56BEB8">
 
-  <img alt="License" src="https://img.shields.io/github/license/{{thiago88sp}}/redis?color=56BEB8">
+  <img alt="License" src="https://img.shields.io/github/license/{{thi go88sp}}/redis?color=56BEB8">
 
   <!-- <img alt="Github issues" src="https://img.shields.io/github/issues/{{thiago88sp}}/redis?color=56BEB8" /> -->
 
