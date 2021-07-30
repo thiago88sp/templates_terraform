@@ -91,7 +91,7 @@ terraform apply -var-file vars/main.tfvars
 
 ## :memo: License ##
 
-This project is under license from MIT. For more details, see the [LICENSE](LICENSE.md) file.
+N/A.
 
 
 Made with :heart: by <a href="https://github.com/thiago88sp" target="_blank">{{Thiago Pontes}}</a>
