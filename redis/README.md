@@ -1,7 +1,6 @@
 <div align="center" id="top"> 
   <img src="https://user-images.githubusercontent.com/54182968/127691383-c0920320-7613-4a82-8897-079ade577ea6.png" alt="Redis" />
-![azure cache redis](https://user-images.githubusercontent.com/54182968/127691383-c0920320-7613-4a82-8897-079ade577ea6.png)
-	
+
 
   &#xa0;
 
