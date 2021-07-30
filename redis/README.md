@@ -1,5 +1,5 @@
 <div align="center" id="top"> 
-  <img src="https://www.pngwing.com/en/free-png-vtuil" alt="Redis" />
+  <img src="https://www.google.com/url?sa=i&url=https%3A%2F%2Fvecta.io%2Fsymbols%2F28%2Fmicrosoft-azure-color%2F13%2Fcache-including-redis&psig=AOvVaw14jbE-Yru7aj251MSuWjXV&ust=1627745669393000&source=images&cd=vfe&ved=0CAsQjRxqFwoTCNj1zKqPi_ICFQAAAAAdAAAAABAD" alt="Redis" />
 
   &#xa0;
 
