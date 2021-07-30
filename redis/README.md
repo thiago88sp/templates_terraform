@@ -51,7 +51,6 @@ Describe your project
 ## :sparkles: Features ##
 
 :heavy_check_mark: Azure Redis Cache Provisioning;\
-#:heavy_check_mark: Azure Redis Cache Provisioning;\
 
 ## :rocket: Technologies ##
 
