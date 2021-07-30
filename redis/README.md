@@ -73,11 +73,20 @@ $ git clone https://github.com/thiago88sp/templates_terraform/tree/main/redis
 # Access
 $ cd redis
 
-# Install dependencies
-$ yarn
+# Longon on to Azure
+az login
 
-# Run the project
-$ yarn start
+# Select your subscription (In case to have two or more subscription)
+az account set --subscription
+
+#Initialize state in backend. The terraform init command is used to initialize a working directory containing Terraform configuration files. This is the first command that should be run after writing a new Terraform configuration or cloning an existing one from version control. It is safe to run this command multiple times.
+terraform init --backend-config vars/backend.hcl
+
+#Run the command to get the execution plan. The terraform plan command creates an execution plan.
+terraform plan -var-file vars/main.tfvars
+
+#Perform the terraform apply. The terraform apply command executes the actions proposed in a Terraform plan.
+terraform apply -var-file vars/main.tfvars
 
 # The server will initialize in the <http://localhost:3000>
 ```
