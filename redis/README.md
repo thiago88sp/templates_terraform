@@ -1,5 +1,5 @@
 <div align="center" id="top"> 
-  <img src="https://www.google.com/url?sa=i&url=https%3A%2F%2Fvecta.io%2Fsymbols%2F28%2Fmicrosoft-azure-color%2F13%2Fcache-including-redis&psig=AOvVaw14jbE-Yru7aj251MSuWjXV&ust=1627745669393000&source=images&cd=vfe&ved=0CAsQjRxqFwoTCNj1zKqPi_ICFQAAAAAdAAAAABAD" alt="Redis" />
+  <img src="./.github/app.gif" alt="Redis" />
 
   &#xa0;
 
@@ -9,7 +9,7 @@
 <h1 align="center">Redis</h1>
 
 <p align="center">
-  <img alt="Github top language" src="https://img.shields.io/github/languages/top/{{thiago88sp}}/redis?color=56BEB8">
+  <img alt="Github top language" src="  https://img.shields.io/github/languages/top/thiago88sp/redis?color=56BEB8">
 
   <img alt="Github language count" src="https://img.shields.io/github/languages/count/{{thiago88sp}}/redis?color=56BEB8">
 
