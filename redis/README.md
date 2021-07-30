@@ -1,5 +1,5 @@
 <div align="center" id="top"> 
-  <img src="./.github/app.gif" alt="Redis" />
+  <img src="https://www.pngwing.com/en/free-png-vtuil" alt="Redis" />
 
   &#xa0;
 
