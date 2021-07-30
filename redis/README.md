@@ -9,7 +9,7 @@
 <h1 align="center">Redis</h1>
 
 <p align="center">
-  <img alt="Github top language" src="https://img.shields.io/github/languages/top/{{THIAGO88SP}}/redis?color=56BEB8">
+  <img alt="Github top language" src="https://img.shields.io/github/languages/top/thiago88sp/redis?color=56BEB8">
 
   <img alt="Github language count" src="https://img.shields.io/github/languages/count/{{thiago88sp}}/redis?color=56BEB8">
 
