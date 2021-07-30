@@ -47,7 +47,7 @@
 
 ## :dart: About ##
 
-Describe your project
+Este projeto tem como objetivo provisionar o Azure Cache Redis no Azure.
 
 ## :sparkles: Features ##
 
