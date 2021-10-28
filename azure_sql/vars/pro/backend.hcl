@@ -1,0 +1,6 @@
+resource_group_name   = "Infra_RG"
+storage_account_name  = "stginfralrs"
+container_name        = "terraform"
+key                   = "k8s.tfstate"
+access_key            = "rbwaiMsNH3I7nuwC0dS2UOIac9JuUYvjbqkaS/y+fEeLTvBgzdVue8Y1itm+rsYyCzI7bVsxSbXTDd+jbK+keg=="
+#sas_token             = "?sv=2020-08-04&ss=b&srt=c&sp=rwdlacitfx&se=2021-10-23T01:24:51Z&st=2021-10-22T17:00:00Z&spr=https&sig=LEYkI3oSYsPU%2Bnn%2FzBnJD6I6eyy9LIKG85fvX%2B6%2BRmQ%3D"
