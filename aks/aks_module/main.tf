@@ -2,13 +2,21 @@ provider "azurerm" {
   features {}
 }
 
-resource "azurerm_resource_group" "k8s" {
-    name     = var.resource_group_name
-    location = var.location
+# Resource Group
+resource "azurerm_resource_group" "main" {
+  name     = "${var.PROJECT}${var.INSTANCE}${var.ENVIRONMENT}${random_integer.uuid.result}-rg"
+  location = "${var.REGION}"
+
+  tags {
+    project = "${var.PROJECT}"
+    instance = "${var.INSTANCE}"
+    environment = "${var.ENVIRONMENT}"
+  }
 }
 
-resource "random_id" "log_analytics_workspace_name_suffix" {
-    byte_length = 8
+resource "random_integer" "uuid" { 
+  min = 100
+  max = 999
 }
 
 resource "azurerm_log_analytics_workspace" "test" {
@@ -32,61 +40,19 @@ resource "azurerm_log_analytics_solution" "test" {
     }
 }
 
-resource "azurerm_kubernetes_cluster" "k8s" {
-    name                = var.cluster_name
-    location            = azurerm_resource_group.k8s.location
-    resource_group_name = azurerm_resource_group.k8s.name
-    dns_prefix          = var.dns_prefix
-    private_cluster_enabled = true
-    kubernetes_version  = "1.21.2"
-    role_based_access_control {
-        enabled                    = true
-    }
+module "aks-nginx" {
+  source = "/home/thiago/templates/modules/terraform-azurerm-aks-nginx-certmgr"
 
-    #linux_profile {
-    #    admin_username = "ubuntu"
-    #
-    #    ssh_key {
-    #        key_data = file(var.ssh_public_key)
-    #    }
-    #}
-
-    default_node_pool {
-        name                = "default"
-        node_count          = var.default_count
-        vm_size             = var.vm_size
-        availability_zones  = [1]
-    }
-
-    auto_scaler_profile{
-        max_unready_nodes = 3
-    }
-    #service_principal {
-    #    client_id     = var.client_id
-    #    client_secret = var.client_secret
-    #}
-
-    identity {
-    type = "SystemAssigned"
-  }
-
-    addon_profile {
-        oms_agent {
-        enabled                    = true
-        log_analytics_workspace_id = azurerm_log_analytics_workspace.test.id
-        }
-        http_application_routing {
-        enabled = false
-        }
-    }
-
-    network_profile {
-        load_balancer_sku = "Standard"
-        network_plugin = "azure"
-    }
-
-    tags = {
-        environment = "production"
-        purpose     = "one trust"
-    }
+        PROJECT="alt"
+        INSTANCE="2"
+        ENVIRONMENT="dev"
+        REGION="southcentralUS"
+        AKS_SSH_ADMIN_KEY="ssh-rsa AAAAB3NzaC1yc-----@----.local"
+        ADMIN_USER="adminuser"
+        NODE_COUNT="1"
+        NODE_SIZE="Standard_D2s_v3"
+        K8S_HELM_HOME="/Users/evill_genius/.helm"
+        K8S_KUBE_CONFIG="/Users/evill_genius/.kube/test1"
+        K8S_VER="1.13.5"
+        VNET_NAME="aks-vnet"
 }
