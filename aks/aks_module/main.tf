@@ -19,40 +19,19 @@ resource "random_integer" "uuid" {
   max = 999
 }
 
-resource "azurerm_log_analytics_workspace" "test" {
-    # The WorkSpace name has to be unique across the whole of azure, not just the current subscription/tenant.
-    name                = "${var.log_analytics_workspace_name}-${random_id.log_analytics_workspace_name_suffix.dec}"
-    location            = var.log_analytics_workspace_location
-    resource_group_name = azurerm_resource_group.k8s.name
-    sku                 = var.log_analytics_workspace_sku
-}
-
-resource "azurerm_log_analytics_solution" "test" {
-    solution_name         = "ContainerInsights"
-    location              = azurerm_log_analytics_workspace.test.location
-    resource_group_name   = azurerm_resource_group.k8s.name
-    workspace_resource_id = azurerm_log_analytics_workspace.test.id
-    workspace_name        = azurerm_log_analytics_workspace.test.name
-
-    plan {
-        publisher = "Microsoft"
-        product   = "OMSGallery/ContainerInsights"
-    }
-}
-
 module "aks-nginx" {
   source = "/home/thiago/templates/modules/terraform-azurerm-aks-nginx-certmgr"
 
-        PROJECT="alt"
-        INSTANCE="2"
-        ENVIRONMENT="dev"
-        REGION="southcentralUS"
+        PROJECT = var.project
+        INSTANCE = var.instance
+        ENVIRONMENT = var.environment
+        REGION = var.Region
         AKS_SSH_ADMIN_KEY="ssh-rsa AAAAB3NzaC1yc-----@----.local"
         ADMIN_USER="adminuser"
         NODE_COUNT="1"
-        NODE_SIZE="Standard_D2s_v3"
-        K8S_HELM_HOME="/Users/evill_genius/.helm"
-        K8S_KUBE_CONFIG="/Users/evill_genius/.kube/test1"
-        K8S_VER="1.13.5"
+        NODE_SIZE = var.node_size
+        K8S_HELM_HOME = var.K8S_HELM_HOME
+        K8S_KUBE_CONFIG = var.K8S_KUBE_CONFIG
+        K8S_VER = var.K8S_VER
         VNET_NAME="aks-vnet"
 }
