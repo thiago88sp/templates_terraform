@@ -6,11 +6,23 @@ Azure Traffic Manager is a DNS-based traffic load balancer. This service allows 
 
 This module contains a Traffic Manager Profile resource (traffic routing method, dns settings and endpoint monitor configuration) and will loop through a for_each to configure Traffic Manager Endpoints.
 
+Module developed to facilitate the creation of Traffic Manager
+
+## Version Compatibility
+
+| Module Version | Terraform Version | AzureRM version |
+|----------------|-------------------| ---------------- |
+| v1.0.1 | = 1.0.0 | ~> 2.97 |
+
+## Specifying version
+
+To prevent your code from receiving automatic module updates, you must inform the desired version in the `source` key of the module block, using the `?ref=***` parameter at the end of the url. as can be seen in the example below.
+
 ## Usage 
 
 ```hcl
 module "traffic_manager" {
-  source                 = "git::<repoURL>?ref=v1.0.0"
+  source                 = "git::<repoURL>?ref=v1.0.1"
   resource_group_name    = azurerm_resource_group.main.name
   profile_name           = "trafficmanager"
   traffic_routing_method = "MultiValue"
@@ -34,3 +46,7 @@ module "traffic_manager" {
 ```
 
 See [Configuration](configuration.md)
+
+## Reference Documentation
+
+Terraform Traffic Manager: [https://registry.terraform.io/providers/hashicorp/azurerm/latest/docs/resources/traffic_manager_profile](https://registry.terraform.io/providers/hashicorp/azurerm/latest/docs/resources/traffic_manager_profile)
