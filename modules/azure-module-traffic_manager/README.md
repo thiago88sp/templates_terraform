@@ -1,4 +1,6 @@
-# terraform-azure-traffic-manager
+# Modulo - Traffic Manager
+[![HCL](https://img.shields.io/badge/language-HCL-blueviolet)](https://www.terraform.io/)
+[![Azure](https://img.shields.io/badge/provider-Azure-blue)](https://registry.terraform.io/providers/hashicorp/azurerm/latest)
 
 Azure Traffic Manager is a DNS-based traffic load balancer. This service allows you to distribute traffic to your public facing applications across the global Azure regions. Traffic Manager also provides your public endpoints with high availability and quick responsiveness.
 
