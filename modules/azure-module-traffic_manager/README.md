@@ -4,7 +4,7 @@ Azure Traffic Manager is a DNS-based traffic load balancer. This service allows 
 
 This module contains a Traffic Manager Profile resource (traffic routing method, dns settings and endpoint monitor configuration) and will loop through a for_each to configure Traffic Manager Endpoints.
 
-## Usage
+## Usage 
 
 ```hcl
 module "traffic_manager" {
