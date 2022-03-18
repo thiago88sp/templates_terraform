@@ -8,7 +8,7 @@ This module contains a Traffic Manager Profile resource (traffic routing method,
 
 ```hcl
 module "traffic_manager" {
-  source                 = "guidalabs/terraform-azure-traffic-manager"
+  source                 = "git::<repoURL>?ref=v1.0.0"
   resource_group_name    = azurerm_resource_group.main.name
   profile_name           = "trafficmanager"
   traffic_routing_method = "MultiValue"
