@@ -25,3 +25,13 @@ provider "google" {
   project = var.project_id
   region  = var.region
 }
+
+#variable "vpc" {
+#    type = string
+#    description = "VPC name to used in GKE cluster"
+#}
+
+#variable "gke_subnet" {
+#    type = string
+#    description = "VPC name to used in GKE cluster"
+#}
