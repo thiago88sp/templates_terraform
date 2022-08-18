@@ -13,14 +13,14 @@ locals {
 #  region  = local.gcp_region
 #}
 
-resource "google_compute_network" "vpc_network" {
-  name                    = var.vpc_network_name
-  auto_create_subnetworks = "false"
-  project                 = var.gcp_project_id
-}
+#resource "google_compute_network" "vpc_network" {
+#  name                    = var.vpc_network_name
+#  auto_create_subnetworks = "false"
+#  project                 = var.gcp_project_id
+#}
 
 # https://www.terraform.io/docs/providers/google/r/compute_subnetwork.html
-resource "google_compute_subnetwork" "vpc_subnetwork" {
+#resource "google_compute_subnetwork" "vpc_subnetwork" {
   # The name of the resource, provided by the client when initially creating
   # the resource. The name must be 1-63 characters long, and comply with
   # RFC1035. Specifically, the name must be 1-63 characters long and match the
@@ -29,38 +29,39 @@ resource "google_compute_subnetwork" "vpc_subnetwork" {
   # a dash, lowercase letter, or digit, except the last character, which
   # cannot be a dash.
   #name = "default-${var.gcp_cluster_region}"
-  name    = var.vpc_subnetwork_name
-  region  = local.gcp_region
-  project = var.gcp_project_id
+  #name    = var.vpc_subnetwork_name
+  #region  = local.gcp_region
+  #project = var.gcp_project_id
 
-  ip_cidr_range = var.vpc_subnetwork_cidr_range
+  #ip_cidr_range = var.vpc_subnetwork_cidr_range
 
   # The network this subnet belongs to. Only networks that are in the
   # distributed mode can have subnetworks.
-  network = var.vpc_network_name
+  #network = var.vpc_network_name
+  #network = data.google_compute_network.vpc.name
 
   # Configurations for secondary IP ranges for VM instances contained in this
   # subnetwork. The primary IP of such VM must belong to the primary ipCidrRange
   # of the subnetwork. The alias IPs may belong to either primary or secondary
   # ranges.
-  secondary_ip_range {
-    range_name    = var.cluster_secondary_range_name
-    ip_cidr_range = var.cluster_secondary_range_cidr
-  }
-  secondary_ip_range {
-    range_name    = var.services_secondary_range_name
-    ip_cidr_range = var.services_secondary_range_cidr
-  }
+  #secondary_ip_range {
+  #  range_name    = var.cluster_secondary_range_name
+  #  ip_cidr_range = var.cluster_secondary_range_cidr
+  #}
+  #secondary_ip_range {
+  #  range_name    = var.services_secondary_range_name
+  #  ip_cidr_range = var.services_secondary_range_cidr
+  #}
 
   # When enabled, VMs in this subnetwork without external IP addresses can
   # access Google APIs and services by using Private Google Access. This is
   # set explicitly to prevent Google's default from fighting with Terraform.
-  private_ip_google_access = true
+  #private_ip_google_access = true
 
-  depends_on = [
-    google_compute_network.vpc_network,
-  ]
-}
+  #depends_on = [
+  #  google_compute_network.vpc_network,
+  #]
+#}
 
 # https://www.terraform.io/docs/providers/google/r/compute_router.html
 # This Cloud Router is used only for the Cloud NAT.
@@ -69,7 +70,7 @@ resource "google_compute_router" "router" {
   count   = var.enable_cloud_nat ? 1 : 0
   name    = format("%s-router", var.cluster_name)
   region  = local.gcp_region
-  network = google_compute_network.vpc_network.self_link
+  network = data.google_compute_network.vpc.self_link
 }
 
 # https://www.terraform.io/docs/providers/google/r/compute_router_nat.html
@@ -123,8 +124,6 @@ module "cluster" {
   #vpc_subnetwork_name = google_compute_subnetwork.vpc_subnetwork.name
 
   vpc_network_name    = data.google_compute_network.vpc.name
-  vpc_subnetwork_name = data.google_compute_subnetwork.gke_subnet.name
+  vpc_subnetwork_name = data.google_compute_subnetwork.gke_subnet.name 
   
-  
-
 }

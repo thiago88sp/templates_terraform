@@ -96,23 +96,23 @@ false. https://cloud.google.com/kubernetes-engine/docs/how-to/preemptible-vms
 EOF
 }
 
-variable "vpc_network_name" {
-  type = string
+#variable "vpc_network_name" {
+#  type = string
 
-  description = <<EOF
-The name of the Google Compute Engine network to which the cluster is
-connected.
-EOF
-}
+#  description = <<EOF
+#The name of the Google Compute Engine network to which the cluster is
+#connected.
+#EOF
+#}
 
-variable "vpc_subnetwork_name" {
-  type = string
-
-  description = <<EOF
-The name of the Google Compute Engine subnetwork in which the cluster's
-instances are launched.
-EOF
-}
+#variable "vpc_subnetwork_name" {
+#  type = string
+#
+#  description = <<EOF
+#The name of the Google Compute Engine subnetwork in which the cluster's
+#instances are launched.
+#EOF
+#}
 
 variable "private_endpoint" {
   type    = bool
@@ -161,9 +161,9 @@ What filtering should be applied to logs for this NAT. Valid values are:
 EOF
 }
 
-variable "vpc_subnetwork_cidr_range" {
-  type = string
-}
+#variable "vpc_subnetwork_cidr_range" {
+#  type = string
+#}
 
 variable "cluster_secondary_range_name" {
   type = string

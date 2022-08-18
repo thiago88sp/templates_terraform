@@ -44,11 +44,11 @@ node_pools = [
   },
 ]
 
-vpc_network_name = "vpc-network"
+#vpc_network_name = "vpc-network"
 
-vpc_subnetwork_name = "vpc-subnetwork"
+#vpc_subnetwork_name = "vpc-subnetwork"
 
-vpc_subnetwork_cidr_range = "10.0.16.0/20"
+#vpc_subnetwork_cidr_range = "10.0.16.0/20"
 
 cluster_secondary_range_name = "pods"
 
