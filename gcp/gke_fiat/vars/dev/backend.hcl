@@ -1,6 +1,2 @@
-terraform {
- backend "gcs" {
-   bucket  = "tf-state-test001"
-   prefix  = "terraform/state"
- }
-}
+bucket  = "tf-state-test001"
+prefix  = "terraform/state"
