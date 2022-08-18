@@ -26,6 +26,7 @@ resource "google_container_cluster" "primary" {
     }
   }
 
+  default_max_pods_per_node = 8
 
 
 
