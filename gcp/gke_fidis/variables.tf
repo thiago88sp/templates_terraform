@@ -49,7 +49,7 @@ EOF
 
 variable "master_ipv4_cidr_block" {
   type    = string
-  default = "172.16.0.0/28"
+  default = "172.21.0.0/28"
 
   description = <<EOF
 The IP range in CIDR notation to use for the hosted master network. This 
@@ -68,9 +68,10 @@ variable "master_authorized_networks_cidr_blocks" {
       # be specified in CIDR notation. This block should allow access from any
       # address, but is given explicitly to prevernt Google's defaults from
       # fighting with Terraform.
-      cidr_block = "0.0.0.0/0"
+      #cidr_block = "0.0.0.0/0"
+      cidr_block = "172.16.0.0/16"
       # Field for users to identify CIDR blocks.
-      display_name = "default"
+      display_name = "pvt-subrede"
     },
   ]
 
