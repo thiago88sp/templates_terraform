@@ -11,7 +11,48 @@ resource "google_container_cluster" "primary" {
 
   network    = data.google_compute_network.vpc.name
   subnetwork = data.google_compute_subnetwork.gke_subnet.name
-  
+  network_policy {
+      enabled = true
+      provider  = "CALICO"
+  }
+  # The configuration for addons supported by GKE.
+  addons_config {
+    http_load_balancing {
+      disabled  = var.http_load_balancing_disabled
+    }
+
+    network_policy_config {
+      disabled = false
+    }
+  }
+
+
+
+
+  # A set of options for creating a private cluster.
+  ip_allocation_policy {
+    cluster_secondary_range_name  = var.cluster_secondary_range_name
+    services_secondary_range_name = var.services_secondary_range_name
+  }
+
+  master_authorized_networks_config {
+    dynamic "cidr_blocks" {
+      for_each = var.master_authorized_networks_cidr_blocks
+      content {
+        cidr_block   = cidr_blocks.value.cidr_block
+        display_name = cidr_blocks.value.display_name
+      }
+    }
+  }
+
+  private_cluster_config {
+    enable_private_endpoint = true
+    enable_private_nodes    = true
+    master_ipv4_cidr_block = var.master_ipv4_cidr_block
+  }
+
+
+
 }
 
 # Separately Managed Node Pool
@@ -20,7 +61,7 @@ resource "google_container_node_pool" "primary_nodes" {
   location   = var.region
   cluster    = google_container_cluster.primary.name
   node_count = var.gke_num_nodes
-
+  
   node_config {
     oauth_scopes = [
       "https://www.googleapis.com/auth/logging.write",
