@@ -49,7 +49,7 @@ EOF
 
 variable "master_ipv4_cidr_block" {
   type    = string
-  default = "172.21.0.0/28"
+  default = "10.0.3.0/28"
 
   description = <<EOF
 The IP range in CIDR notation to use for the hosted master network. This 

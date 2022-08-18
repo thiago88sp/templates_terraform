@@ -19,6 +19,6 @@ data "google_compute_network" "vpc" {
 
 #Consume existing Subnet
 data "google_compute_subnetwork" "gke_subnet" {
-  name   = "subnet-bancofidis-nonprod-invalid2"
+  name   = "subnet-bancofidis-nonprod-invalid"
   region = "southamerica-east1"
 }
