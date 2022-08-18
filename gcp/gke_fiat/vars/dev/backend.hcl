@@ -1,7 +1,6 @@
 terraform {
-  backend "gcs" {
-    bucket  = "tf-state-test001"
-    prefix  = "terraform/state"
-    #credentials = "example.json"
-  }
+ backend "gcs" {
+   bucket  = "tf-state-test001"
+   prefix  = "terraform/state"
+ }
 }
