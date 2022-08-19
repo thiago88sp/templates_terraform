@@ -1,2 +1,3 @@
-project_id = "REPLACE_ME"
-region     = "us-central1"
+gcp_project_id = "terraformproject-359719"
+region     = "southamerica-east1"
+availability_type = "ZONAL"
