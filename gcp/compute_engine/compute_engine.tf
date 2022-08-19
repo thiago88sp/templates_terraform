@@ -37,7 +37,8 @@ resource "google_compute_instance" "default" {
     purpose = "fidis"
   }
 
-  metadata_startup_script = "echo hi > /test.txt"
+  #metadata_startup_script = "echo hi > /test.txt"
+  metadata_startup_script = nginx-install.sh
 
   #service_account {
   #  # Google recommends custom service accounts that have cloud-platform scope and permissions granted via IAM Roles.
