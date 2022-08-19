@@ -1,4 +1,7 @@
+# ---------------------------------------------------------------------------------------------------------------------
 # GKE cluster
+# ---------------------------------------------------------------------------------------------------------------------
+
 resource "google_container_cluster" "primary" {
   name     = "${var.project_id}-gke"
   location = var.region
@@ -56,7 +59,10 @@ resource "google_container_cluster" "primary" {
 
 }
 
+# ---------------------------------------------------------------------------------------------------------------------
 # Separately Managed Node Pool
+# ---------------------------------------------------------------------------------------------------------------------
+
 resource "google_container_node_pool" "primary_nodes" {
   name       = "${google_container_cluster.primary.name}-node-pool"
   location   = var.region
