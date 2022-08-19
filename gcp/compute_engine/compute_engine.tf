@@ -1,13 +1,14 @@
-resource "google_service_account" "default" {
-  account_id   = "service_account_id"
-  display_name = "Service Account"
-}
+#resource "google_service_account" "default" {
+#  account_id   = "service_account_id"
+#  display_name = "Service Account"
+#}
 
 resource "google_compute_instance" "default" {
-  name         = var.vmname
-  project      = var.project_id
-  machine_type = "e2-medium"
-  zone         = "us-central1-a"
+  name            = var.vmname
+  project         = var.project_id
+  machine_type    = "e2-medium"
+  zone            = "southamerica-east1-a"
+  desired_status  = "TERMINATED"
 
   tags = ["foo", "bar"]
 
@@ -17,13 +18,14 @@ resource "google_compute_instance" "default" {
     }
   }
 
-  // Local SSD disk
-  scratch_disk {
-    interface = "SCSI"
-  }
+  #// Local SSD disk
+  #scratch_disk {
+  #  interface = "SCSI"
+  #}
 
   network_interface {
-    network = "default"
+    network     = data.google_compute_network.vpc.name
+    subnetwork  = data.google_compute_subnetwork.vm_subnet.name
 
     access_config {
       // Ephemeral public IP
@@ -31,14 +33,15 @@ resource "google_compute_instance" "default" {
   }
 
   metadata = {
-    foo = "bar"
+    env = "dev"
+    purpose = "fidis"
   }
 
   metadata_startup_script = "echo hi > /test.txt"
 
-  service_account {
-    # Google recommends custom service accounts that have cloud-platform scope and permissions granted via IAM Roles.
-    email  = google_service_account.default.email
-    scopes = ["cloud-platform"]
-  }
+  #service_account {
+  #  # Google recommends custom service accounts that have cloud-platform scope and permissions granted via IAM Roles.
+  #  email  = google_service_account.default.email
+  #  scopes = ["cloud-platform"]
+  #}
 }
