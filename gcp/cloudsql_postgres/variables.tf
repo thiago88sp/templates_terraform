@@ -66,6 +66,12 @@ variable "zone" {
   description = "The zone for the master instance, it should be something like: `us-central1-a`, `us-east1-c`."
 }
 
+variable "secondary_zone" {
+  type        = string
+  description = "The zone for the master instance, it should be something like: `us-central1-a`, `us-east1-c`."
+  default = ""
+}
+
 variable "activation_policy" {
   description = "The activation policy for the master instance.Can be either `ALWAYS`, `NEVER` or `ON_DEMAND`."
   type        = string
@@ -92,4 +98,10 @@ variable "backup_configuration" {
     retained_backups               = null
     retention_unit                 = null
   }
+}
+
+variable "user_labels" {
+  description = "The key/value labels for the master instances."
+  type        = map(string)
+  default     = {}
 }

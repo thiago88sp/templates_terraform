@@ -33,10 +33,16 @@ resource "google_service_networking_connection" "private_vpc_connection" {
 
 resource "google_sql_database_instance" "instance" {
 
-  name                    = "private-instance-${random_id.db_name_suffix.hex}"
+  #name                    = "private-instance-${random_id.db_name_suffix.hex}"
+  name                    = "${var.gcp_project_id}-postgres"
   region                  = var.region
   database_version        = var.postgres_version
   project                 = var.gcp_project_id
+
+
+  # To make it easier to test this example, we are disabling deletion protection so we can destroy the databases
+  # during the tests. By default, we recommend setting deletion_protection to true, to ensure database instances are
+  # not inadvertently destroyed.
   deletion_protection     = false
 
   depends_on = [google_service_networking_connection.private_vpc_connection]
@@ -45,7 +51,7 @@ resource "google_sql_database_instance" "instance" {
   settings {
     tier = "db-f1-micro"
     ip_configuration {
-      ipv4_enabled    = true
+      ipv4_enabled    = false
       private_network = data.google_compute_network.vpc.id
       #allocated_ip_range = data.google_compute_subnetwork.postgres_subnet.secondary_ip_range.range_name
     }
@@ -64,7 +70,13 @@ resource "google_sql_database_instance" "instance" {
 
     location_preference {
       zone  = var.zone
+      secondary_zone  = var.secondary_zone
 
+    }
+
+    user_labels = {
+      env = "dev"
+      purpose = "fidis"
     }
 
     dynamic "backup_configuration" {
@@ -87,6 +99,4 @@ resource "google_sql_database_instance" "instance" {
       }
     }
   }
-
-
 }
