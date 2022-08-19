@@ -8,7 +8,8 @@ resource "google_compute_instance" "default" {
   project         = var.project_id
   machine_type    = "e2-medium"
   zone            = "southamerica-east1-a"
-  desired_status  = "TERMINATED"
+  #desired_status  = "TERMINATED"
+  desired_status  = "RUNNING"
 
   tags = ["foo", "bar"]
 
@@ -38,7 +39,7 @@ resource "google_compute_instance" "default" {
   }
 
   #metadata_startup_script = "echo hi > /test.txt"
-  metadata_startup_script = nginx-install.sh
+  metadata_startup_script = "nginx-install.sh"
 
   #service_account {
   #  # Google recommends custom service accounts that have cloud-platform scope and permissions granted via IAM Roles.
