@@ -7,6 +7,10 @@ terraform {
   }
 }
 
+provider "google" {
+  credentials = file("terraformproject.json")
+}
+
 terraform {
   backend "gcs" {
   }

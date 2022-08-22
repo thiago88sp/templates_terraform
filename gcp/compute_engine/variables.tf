@@ -39,4 +39,10 @@ variable "zone" {
   default     = null
 }
 
+variable "name_suffix" {
+  type        = string
+  description = "Sufix."
+  default     = null
+}
+
 

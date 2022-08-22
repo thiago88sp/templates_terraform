@@ -8,12 +8,16 @@ data "google_compute_zones" "available" {
   region  = var.region
 }
 
+resource "random_id" "name_suffix" {
+  byte_length = 2
+}
+
 
 resource "google_compute_instance" "default" {
   name            = var.vmname
   project         = var.project_id
-  machine_type    = "e2-medium"
-  zone            = "southamerica-east1-a"
+  machine_type    = "e2-standard-2"
+  zone            = var.zone
   #desired_status  = "TERMINATED"
   desired_status  = "RUNNING"
   labels          = var.labels
@@ -29,7 +33,7 @@ resource "google_compute_instance" "default" {
 
   #// Local SSD disk
   #scratch_disk {
-  #  interface = "NVME"
+  #  interface = "SCSI"
   #}
 
   network_interface {
@@ -43,9 +47,9 @@ resource "google_compute_instance" "default" {
   }
 
   metadata = {
-    env = "dev"
-    purpose = "fidis"
+    sshKeys = join("",["thiago:",file("id_rsa.pub")])
   }
+
 
   #metadata_startup_script = "echo hi > /test.txt"
   metadata_startup_script = "nginx-install.sh"
@@ -55,5 +59,23 @@ resource "google_compute_instance" "default" {
   #  email  = google_service_account.default.email
   #  scopes = ["cloud-platform"]
   #}
+
+  attached_disk {
+    source = google_compute_disk.datadisk.name
+    mode  = "READ_WRITE"
+  }
+}
+
+resource "google_compute_disk" "datadisk" {
+  name  = "datadisk-${random_id.name_suffix.hex}"
+  project = var.project_id
+  type  = "pd-ssd"
+  zone  = var.zone
+  
+  labels = {
+    environment = "dev"
+  }
+  physical_block_size_bytes = 4096
+  size  = "250"
 }
 

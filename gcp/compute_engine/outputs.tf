@@ -1,4 +1,4 @@
-output "zone" {
+output "available_zones_in_region" {
   description = "List of available zones in region"
   value       = data.google_compute_zones.available.names
 }
@@ -13,4 +13,9 @@ output "vmname" {
   description = "List of all details for compute instances"
   value       = google_compute_instance.default.name
   #sensitive   = true
+}
+
+output "project_id" {
+  description = "List of all details for compute instances"
+  value       = google_compute_instance.default.project
 }
