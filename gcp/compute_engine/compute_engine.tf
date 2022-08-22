@@ -46,9 +46,9 @@ resource "google_compute_instance" "default" {
     }
   }
 
-  metadata = {
-    sshKeys = join("",["thiago:",file("id_rsa.pub")])
-  }
+  #metadata = {
+  #  sshKeys = join("",["thiago:",file("id_rsa.pub")])
+  #}
 
 
   #metadata_startup_script = "echo hi > /test.txt"
