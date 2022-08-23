@@ -12,6 +12,13 @@ resource "random_id" "name_suffix" {
   byte_length = 2
 }
 
+data "template_file" "nginx" {
+  template = "install_nginx.tpl"
+
+  vars = {
+    ufw_allow_nginx = "Nginx HTTP"
+  }
+}
 
 resource "google_compute_instance" "default" {
   name            = var.vmname
@@ -53,6 +60,7 @@ resource "google_compute_instance" "default" {
 
   #metadata_startup_script = "echo hi > /test.txt"
   metadata_startup_script = "nginx-install.sh"
+  #metadata_startup_script = data.template_file.nginx.rendered
 
   #service_account {
   #  # Google recommends custom service accounts that have cloud-platform scope and permissions granted via IAM Roles.
