@@ -59,7 +59,7 @@ resource "google_compute_instance" "default" {
 
 
   #metadata_startup_script = "echo hi > /test.txt"
-  metadata_startup_script = "nginx-install.sh"
+  metadata_startup_script = "compute_engine/nginx-install.sh"
   #metadata_startup_script = data.template_file.nginx.rendered
 
   #service_account {
