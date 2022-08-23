@@ -18,15 +18,15 @@ variable "zone" {
   type        = string
 }
 
-variable "network" {
-  description = "Network where Cloud Composer is created."
-  type        = string
-}
+#variable "network" {
+#  description = "Network where Cloud Composer is created."
+#  type        = string
+#}
 
-variable "subnetwork" {
-  description = "Subetwork where Cloud Composer is created."
-  type        = string
-}
+#variable "subnetwork" {
+#  description = "Subetwork where Cloud Composer is created."
+#  type        = string
+#}
 
 variable "enable_private_endpoint" {
   description = "Configure public access to the cluster endpoint."

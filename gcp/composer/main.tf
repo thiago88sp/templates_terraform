@@ -5,7 +5,7 @@ module "composer-environment" {
   composer_env_name       = var.composer_env_name
   region                  = var.region
   zone                    = var.zone
-  network                 = var.network
-  subnetwork              = var.subnetwork
+  network                 = data.google_compute_network.vpc.name
+  subnetwork              = data.google_compute_subnetwork.composer_subnet.name
   enable_private_endpoint = var.enable_private_endpoint
 }
