@@ -57,7 +57,8 @@ variable "node_count" {
 variable "machine_type" {
   description = "Machine type of Cloud Composer nodes."
   type        = string
-  default     = "n1-standard-8"
+  #default     = "n1-standard-8"
+  default     = "e2-standard-2"
 }
 
 variable "composer_service_account" {
