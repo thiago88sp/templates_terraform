@@ -7,7 +7,7 @@ terraform {
   }
 }
 
-#terraform {
-#  backend "gcs" {
-#  }
-#}
+terraform {
+  backend "gcs" {
+  }
+}
