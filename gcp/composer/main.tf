@@ -11,14 +11,15 @@ module "composer-environment" {
   zone                    = var.zone
   network                 = data.google_compute_network.vpc.name
   subnetwork              = data.google_compute_subnetwork.composer_subnet.name
-  enable_private_endpoint = "true"
+  #enable_private_endpoint = "true"
+
 }
 
 # ---------------------------------------------------------------------------------------------------------------------
 # COMPOSER V2
 # ---------------------------------------------------------------------------------------------------------------------
 
-module "simple-composer-environment" {
+/* module "simple-composer-environment" {
   source                           = "./modules/create_environment_v2"
   project_id                       = var.project_id
   composer_env_name                = var.composer_env_name
@@ -50,4 +51,4 @@ module "simple-composer-environment" {
     min_count  = 1
     max_count  = 3
   }
-}
+} */

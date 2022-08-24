@@ -33,6 +33,7 @@ resource "google_composer_environment" "composer_env" {
           services_secondary_range_name = var.service_ip_allocation_range_name
         }
       }
+
     }
 
     dynamic "web_server_network_access_control" {
@@ -91,5 +92,14 @@ resource "google_composer_environment" "composer_env" {
         kms_key_name = encryption_config.value["kms_key_name"]
       }
     }
+
+      database_config {
+        machine_type = var.machine_type_db   
+      }
+
+      web_server_config {
+        machine_type =  var.machine_type_web
+      }
+
   }
 }

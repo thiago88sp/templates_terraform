@@ -61,6 +61,19 @@ variable "machine_type" {
   default     = "e2-standard-2"
 }
 
+variable "machine_type_db" {
+  description = "Cloud SQL machine type used by Airflow database. It has to be one of: db-n1-standard-2, db-n1-standard-4, db-n1-standard-8 or db-n1-standard-16."
+  type        = string
+  default     = "db-n1-standard-2"
+}
+
+variable "machine_type_web" {
+  description = "Machine type on which Airflow web server is running. It has to be one of: composer-n1-webserver-2, composer-n1-webserver-4 or composer-n1-webserver-8."
+  type        = string
+  default     = "composer-n1-webserver-2"
+}
+
+
 variable "composer_service_account" {
   description = "Service Account for running Cloud Composer."
   type        = string
