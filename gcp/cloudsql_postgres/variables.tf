@@ -105,3 +105,21 @@ variable "user_labels" {
   type        = map(string)
   default     = {}
 }
+
+variable "purpose" {
+  type      = string
+  description = "The purpose of the resource. Possible values include: VPC_PEERING - for peer networks and PRIVATE_SERVICE_CONNECT - for (Beta only) Private Service Connect networks"
+  default     = "VPC_PEERING"
+}
+
+variable "address_type" {
+  type    = string
+  description = "The type of the address to reserve. EXTERNAL indicates public/external single IP address. INTERNAL indicates internal IP ranges belonging to some network. Default value is EXTERNAL. Possible values are EXTERNAL and INTERNAL."
+  default = "INTERNAL"
+}
+
+variable "prefix_length" {
+  type  = number
+  description = "The prefix length of the IP range. If not present, it means the address field is a single IP address. This field is not applicable to addresses with addressType=EXTERNAL, or addressType=INTERNAL when purpose=PRIVATE_SERVICE_CONNECT"
+  default = 16
+}

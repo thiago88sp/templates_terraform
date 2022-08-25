@@ -10,11 +10,11 @@ resource "random_id" "db_name_suffix" {
 
 resource "google_compute_global_address" "private_ip_address" {
 
-  name          = "private-ip-address"
+  name          = "${var.gcp_project_id}-private-ip-adress"
   project       = var.gcp_project_id
-  purpose       = "VPC_PEERING"
-  address_type  = "INTERNAL"
-  prefix_length = 16
+  purpose       = var.purpose
+  address_type  = var.address_type
+  prefix_length = var.prefix_length
   network       = data.google_compute_network.vpc.id
 
 }

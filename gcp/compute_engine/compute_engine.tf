@@ -12,14 +12,6 @@ resource "random_id" "name_suffix" {
   byte_length = 2
 }
 
-data "template_file" "nginx" {
-  template = "install_nginx.tpl"
-
-  vars = {
-    ufw_allow_nginx = "Nginx HTTP"
-  }
-}
-
 # ---------------------------------------------------------------------------------------------------------------------
 # GOOGLE COMPUTE INSTANCE
 # ---------------------------------------------------------------------------------------------------------------------
