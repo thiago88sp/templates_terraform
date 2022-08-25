@@ -25,13 +25,13 @@ data "template_file" "nginx" {
 # ---------------------------------------------------------------------------------------------------------------------
 
 resource "google_compute_instance" "default" {
-  name            = var.vmname
-  project         = var.project_id
-  machine_type    = "e2-standard-2"
-  zone            = var.zone
+  name         = var.vmname
+  project      = var.project_id
+  machine_type = "e2-standard-2"
+  zone         = var.zone
   #desired_status  = "TERMINATED"
-  desired_status  = "RUNNING"
-  labels          = var.labels
+  desired_status = "RUNNING"
+  labels         = var.labels
 
   #tags = ["foo", "bar"]
 
@@ -48,8 +48,8 @@ resource "google_compute_instance" "default" {
   #}
 
   network_interface {
-    network     = data.google_compute_network.vpc.name
-    subnetwork  = data.google_compute_subnetwork.vm_subnet.name
+    network            = data.google_compute_network.vpc.name
+    subnetwork         = data.google_compute_subnetwork.vm_subnet.name
     subnetwork_project = data.google_compute_subnetwork.vm_subnet.project
 
     access_config {
@@ -63,7 +63,8 @@ resource "google_compute_instance" "default" {
 
 
   #metadata_startup_script = "echo hi > /test.txt"
-  metadata_startup_script = "compute_engine/nginx-install.sh"
+  metadata_startup_script = var.nginx_install ? file("${path.module}/nginx-install.sh") : ""
+
   #metadata_startup_script = data.template_file.nginx.rendered
 
   #service_account {
@@ -74,7 +75,7 @@ resource "google_compute_instance" "default" {
 
   attached_disk {
     source = google_compute_disk.datadisk.name
-    mode  = "READ_WRITE"
+    mode   = "READ_WRITE"
   }
 }
 
@@ -84,15 +85,15 @@ resource "google_compute_instance" "default" {
 # ---------------------------------------------------------------------------------------------------------------------
 
 resource "google_compute_disk" "datadisk" {
-  name  = "datadisk-${random_id.name_suffix.hex}"
+  name    = "datadisk-${random_id.name_suffix.hex}"
   project = var.project_id
-  type  = "pd-ssd"
-  zone  = var.zone
-  
+  type    = "pd-ssd"
+  zone    = var.zone
+
   labels = {
     environment = "dev"
   }
   physical_block_size_bytes = 4096
-  size  = "250"
+  size                      = "250"
 }
 

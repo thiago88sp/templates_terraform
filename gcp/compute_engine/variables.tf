@@ -1,6 +1,6 @@
 variable "vmname" {
   description = "The name of VM."
-  type = string
+  type        = string
 }
 
 variable "project_id" {
@@ -46,3 +46,8 @@ variable "name_suffix" {
 }
 
 
+variable "nginx_install" {
+  type        = bool
+  description = "Nginx install or not?"
+  default     = false
+}
