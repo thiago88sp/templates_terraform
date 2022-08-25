@@ -19,6 +19,7 @@ variable "project_id" {
 
 variable "region" {
   description = "region"
+  default = "us-central1"
 }
 
 provider "google" {
@@ -107,4 +108,10 @@ EOF
 
 variable "services_secondary_range_cidr" {
   type = string
+}
+
+variable "environment" {
+  type  = string
+  description = ""
+  default = ""
 }

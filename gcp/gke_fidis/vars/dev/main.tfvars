@@ -11,3 +11,5 @@ cluster_secondary_range_cidr = "10.0.0.0/24"
 services_secondary_range_name = "services"
 
 services_secondary_range_cidr = "10.0.1.0/24"
+
+environment = "dev"
