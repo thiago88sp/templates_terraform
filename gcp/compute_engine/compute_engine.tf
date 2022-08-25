@@ -25,19 +25,17 @@ data "template_file" "nginx" {
 # ---------------------------------------------------------------------------------------------------------------------
 
 resource "google_compute_instance" "default" {
-  name         = var.vmname
-  project      = var.project_id
-  machine_type = "e2-standard-2"
-  zone         = var.zone
-  #desired_status  = "TERMINATED"
-  desired_status = "RUNNING"
+  name           = var.vmname
+  project        = var.project_id
+  machine_type   = var.machine_type
+  zone           = var.zone
+  desired_status = var.desired_status
   labels         = var.labels
 
   #tags = ["foo", "bar"]
 
   boot_disk {
     initialize_params {
-      #image = "debian-cloud/debian-11"
       image = data.google_compute_image.my_image.self_link
     }
   }
@@ -61,11 +59,15 @@ resource "google_compute_instance" "default" {
   #  sshKeys = join("",["thiago:",file("id_rsa.pub")])
   #}
 
+  # ---------------------------------------------------------------------------------------------------------------------
+  # NGINX INSTALL OR NOT
+  # ---------------------------------------------------------------------------------------------------------------------
 
-  #metadata_startup_script = "echo hi > /test.txt"
   metadata_startup_script = var.nginx_install ? file("${path.module}/nginx-install.sh") : ""
 
-  #metadata_startup_script = data.template_file.nginx.rendered
+  # ---------------------------------------------------------------------------------------------------------------------
+  # Service account to attach to the instance.
+  # ---------------------------------------------------------------------------------------------------------------------
 
   #service_account {
   #  # Google recommends custom service accounts that have cloud-platform scope and permissions granted via IAM Roles.
@@ -73,9 +75,13 @@ resource "google_compute_instance" "default" {
   #  scopes = ["cloud-platform"]
   #}
 
+  # ---------------------------------------------------------------------------------------------------------------------
+  # Additional disks to attach to the instance
+  # ---------------------------------------------------------------------------------------------------------------------
+
   attached_disk {
     source = google_compute_disk.datadisk.name
-    mode   = "READ_WRITE"
+    mode   = var.mode
   }
 }
 

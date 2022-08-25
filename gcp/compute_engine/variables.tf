@@ -11,6 +11,12 @@ variable "region" {
   description = "project id"
 }
 
+variable "machine_type" {
+  type        = string
+  description = "The machine type to create."
+  default     = "e2-standard-2"
+}
+
 variable "labels" {
   type = map(string)
   default = {
@@ -50,4 +56,17 @@ variable "nginx_install" {
   type        = bool
   description = "Nginx install or not?"
   default     = false
+}
+
+
+variable "desired_status" {
+  type        = string
+  description = "Desired status of the instance. Either RUNNING or TERMINATED"
+  default     = "RUNNING"
+}
+
+variable "mode" {
+  type        = string
+  description = "Either READ_ONLY or READ_WRITE, defaults to READ_WRITE If you have a persistent disk with data that you want to share between multiple instances, detach it from any read-write instances and attach it to one or more instances in read-only mode."
+  default     = "READ_WRITE"
 }
