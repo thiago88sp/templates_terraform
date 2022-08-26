@@ -3,7 +3,7 @@
 # ---------------------------------------------------------------------------------------------------------------------
 
 module "compute_engine" {
-  source = "./module/compute_engine" 
+  source = "./modules/compute_engine" 
 
   project_id    = "terraformproject-359719"
   region        = "southamerica-east1"
