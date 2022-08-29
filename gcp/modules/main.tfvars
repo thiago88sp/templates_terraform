@@ -1,8 +1,12 @@
 gcp_project_id                = "terraformproject-359719"
+project_id_composer           = "terraformproject-359719"
+project_id                    = "terraformproject-359719"
 region                        = "southamerica-east1"
+region_cloudsql               = "southamerica-east1"
+region_composer               = "southamerica-east1"
 availability_type             = "ZONAL"
 zone                          = "southamerica-east1-a"
-project_id                    = "terraformproject-359719"
+zone_composer                 = "southamerica-east1-a"
 composer_env_name             = "composer-test"
 vmname                        = "teste"
 nginx_install                 = true

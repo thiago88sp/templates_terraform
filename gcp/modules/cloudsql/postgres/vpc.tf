@@ -14,17 +14,17 @@
 
 #Consume existing VPC
 data "google_compute_network" "vpc" {
-  name = "vpc-banco-fidis-nonprod"
-  project = var.gcp_project_id
+  name    = "vpc-banco-fidis-nonprod"
+  project = var.net_project_id
 }
 
 #Consume existing Subnet
 data "google_compute_subnetwork" "postgres_subnet" {
-  name   = "postgres-subnet"
-  project = var.gcp_project_id
-  region = "southamerica-east1"
-#  secondary_ip_range  {
-#    range_name  = ""
-#    ip_cidr_range = ""
-#  }
+  name    = "postgres-subnet"
+  project = var.net_project_id
+  region  = "southamerica-east1"
+  #  secondary_ip_range  {
+  #    range_name  = ""
+  #    ip_cidr_range = ""
+  #  }
 }

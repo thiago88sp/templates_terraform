@@ -3,10 +3,48 @@ variable "gcp_project_id" {
   type        = string
 }
 
+variable "project_id_composer" {
+  description = "The project ID to host the Composer."
+  type        = string
+}
+
+#variable "network_project_id" {
+#  description = "The project ID from VPCs."
+#  type        = string
+#}
+
+/* variable "network" {
+  description = "Network where Cloud Composer is created."
+  type        = string
+}
+
+variable "subnetwork" {
+  description = "Subetwork where Cloud Composer is created."
+  type        = string
+} */
+
+
 variable "region" {
   description = "The project ID to host the database in."
   type        = string
 }
+
+
+variable "region_composer" {
+  description = "The Region to host the Composer."
+  type        = string
+}
+
+variable "region_cloudsql" {
+  description = "The Region to host the CloudSQL."
+  type        = string
+}
+
+variable "zone_composer" {
+  description = "The Zone to host the Composer."
+  type        = string
+}
+
 
 variable "availability_type" {
   description = "The project ID to host the database in."

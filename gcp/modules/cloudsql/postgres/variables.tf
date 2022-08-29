@@ -1,6 +1,12 @@
-variable "gcp_project_id" {
+variable "cloudsql_projectid" {
   description = "The project ID to host the database in."
-  type = string
+  type        = string
+}
+
+variable "net_project_id" {
+  description = "The project ID from Network."
+  type        = string
+  default     = "terraformproject-359719"
 }
 
 variable "postgres_version" {
@@ -9,7 +15,7 @@ variable "postgres_version" {
   default     = "POSTGRES_14"
 }
 
-variable "region" {
+variable "region_cloudsql" {
   description = "The region to host the database in."
   type        = string
 }
@@ -61,15 +67,15 @@ variable "maintenance_window_hour" {
   default     = 23
 }
 
-variable "zone" {
+variable "zone_cloudsql" {
   type        = string
   description = "The zone for the master instance, it should be something like: `us-central1-a`, `us-east1-c`."
 }
 
-variable "secondary_zone" {
+variable "secondary_zone_cloudsql" {
   type        = string
   description = "The zone for the master instance, it should be something like: `us-central1-a`, `us-east1-c`."
-  default = ""
+  default     = ""
 }
 
 variable "activation_policy" {
@@ -107,19 +113,19 @@ variable "user_labels" {
 }
 
 variable "purpose" {
-  type      = string
+  type        = string
   description = "The purpose of the resource. Possible values include: VPC_PEERING - for peer networks and PRIVATE_SERVICE_CONNECT - for (Beta only) Private Service Connect networks"
   default     = "VPC_PEERING"
 }
 
 variable "address_type" {
-  type    = string
+  type        = string
   description = "The type of the address to reserve. EXTERNAL indicates public/external single IP address. INTERNAL indicates internal IP ranges belonging to some network. Default value is EXTERNAL. Possible values are EXTERNAL and INTERNAL."
-  default = "INTERNAL"
+  default     = "INTERNAL"
 }
 
 variable "prefix_length" {
-  type  = number
+  type        = number
   description = "The prefix length of the IP range. If not present, it means the address field is a single IP address. This field is not applicable to addresses with addressType=EXTERNAL, or addressType=INTERNAL when purpose=PRIVATE_SERVICE_CONNECT"
-  default = 16
+  default     = 16
 }

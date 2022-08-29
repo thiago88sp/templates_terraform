@@ -10,8 +10,8 @@ resource "random_id" "db_name_suffix" {
 
 resource "google_compute_global_address" "private_ip_address" {
 
-  name          = "${var.gcp_project_id}-private-ip-adress"
-  project       = var.gcp_project_id
+  name          = "${var.cloudsql_projectid}-private-ip-adress"
+  project       = var.cloudsql_projectid
   purpose       = var.purpose
   address_type  = var.address_type
   prefix_length = var.prefix_length
@@ -21,7 +21,7 @@ resource "google_compute_global_address" "private_ip_address" {
 
 resource "google_service_networking_connection" "private_vpc_connection" {
 
- network                 = data.google_compute_network.vpc.id
+  network                 = data.google_compute_network.vpc.id
   service                 = "servicenetworking.googleapis.com"
   reserved_peering_ranges = [google_compute_global_address.private_ip_address.name]
 }
@@ -34,16 +34,16 @@ resource "google_service_networking_connection" "private_vpc_connection" {
 resource "google_sql_database_instance" "instance" {
 
   #name                    = "private-instance-${random_id.db_name_suffix.hex}"
-  name                    = "${var.gcp_project_id}-postgres"
-  region                  = var.region
-  database_version        = var.postgres_version
-  project                 = var.gcp_project_id
+  name             = "${var.cloudsql_projectid}-postgres"
+  region           = var.region_cloudsql
+  database_version = var.postgres_version
+  project          = var.cloudsql_projectid
 
 
   # To make it easier to test this example, we are disabling deletion protection so we can destroy the databases
   # during the tests. By default, we recommend setting deletion_protection to true, to ensure database instances are
   # not inadvertently destroyed.
-  deletion_protection     = false
+  deletion_protection = false
 
   depends_on = [google_service_networking_connection.private_vpc_connection]
 
@@ -55,27 +55,27 @@ resource "google_sql_database_instance" "instance" {
       private_network = data.google_compute_network.vpc.id
       #allocated_ip_range = data.google_compute_subnetwork.postgres_subnet.secondary_ip_range.range_name
     }
-    availability_type = var.availability_type
-    disk_autoresize         = var.disk_autoresize
-    disk_autoresize_limit   = var.disk_autoresize_limit
-    disk_size               = var.disk_size
-    disk_type               = var.disk_type
-    pricing_plan            = var.pricing_plan
-    activation_policy       = var.activation_policy
+    availability_type     = var.availability_type
+    disk_autoresize       = var.disk_autoresize
+    disk_autoresize_limit = var.disk_autoresize_limit
+    disk_size             = var.disk_size
+    disk_type             = var.disk_type
+    pricing_plan          = var.pricing_plan
+    activation_policy     = var.activation_policy
 
     maintenance_window {
       day  = var.maintenance_window_day
-      hour = var.maintenance_window_hour  
+      hour = var.maintenance_window_hour
     }
 
     location_preference {
-      zone  = var.zone
-      secondary_zone  = var.secondary_zone
+      zone           = var.zone_cloudsql
+      secondary_zone = var.secondary_zone_cloudsql
 
     }
 
     user_labels = {
-      env = "dev"
+      env     = "dev"
       purpose = "fidis"
     }
 

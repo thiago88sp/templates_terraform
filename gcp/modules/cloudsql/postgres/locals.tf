@@ -1,5 +1,5 @@
 locals {
-    // HA method using REGIONAL availability_type requires point in time recovery to be enabled
+  // HA method using REGIONAL availability_type requires point in time recovery to be enabled
   point_in_time_recovery_enabled = var.availability_type == "REGIONAL" ? true : lookup(var.backup_configuration, "point_in_time_recovery_enabled", false)
   backups_enabled                = var.availability_type == "REGIONAL" ? true : lookup(var.backup_configuration, "enabled", false)
 

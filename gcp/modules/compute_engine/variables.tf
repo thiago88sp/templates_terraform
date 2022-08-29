@@ -3,11 +3,19 @@ variable "vmname" {
   type        = string
 }
 
-variable "project_id" {
+variable "project_id_gce" {
+  type        = string
   description = "project id"
 }
 
-variable "region" {
+variable "net_project_id" {
+  description = "The project ID from Network."
+  type        = string
+  default     = "terraformproject-359719"
+}
+
+variable "region_gce" {
+  type        = string
   description = "project id"
 }
 
@@ -39,7 +47,7 @@ variable "instances_details" {
   default     = null
 }
 
-variable "zone" {
+variable "zone_gce" {
   type        = string
   description = "Zone where the instances should be created. If not specified, instances will be spread across available zones in the region."
   default     = null

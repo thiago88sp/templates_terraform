@@ -1,26 +1,23 @@
-locals {
-  network_project_id = var.network_project_id != "" ? var.network_project_id : var.project_id
-  subnetwork_region  = var.subnetwork_region != "" ? var.subnetwork_region : join("-", slice(split("-", var.zone), 0, 2))
-}
-
 resource "google_composer_environment" "composer_env" {
   provider = google-beta
 
-  project = var.project_id
+  project = var.project_id_composer
   name    = var.composer_env_name
-  region  = var.region
+  region  = var.region_composer
   labels  = var.labels
-  network                 = data.google_compute_network.vpc.name
-  subnetwork              = data.google_compute_subnetwork.composer_subnet.name
+  #network                 = data.google_compute_network.vpc.name
+  #subnetwork              = data.google_compute_subnetwork.composer_subnet.name
 
   config {
     node_count = var.node_count
 
     node_config {
-      zone                 = var.zone
+      zone                 = var.zone_composer
       machine_type         = var.machine_type
-      network              = "projects/${local.network_project_id}/global/networks/${var.network}"
-      subnetwork           = "projects/${local.network_project_id}/regions/${local.subnetwork_region}/subnetworks/${var.subnetwork}"
+      #network              = "projects/${local.network_project_id}/global/networks/${var.network}"
+      #subnetwork           = "projects/${local.network_project_id}/regions/${local.subnetwork_region}/subnetworks/${var.subnetwork}"
+      #network                 = data.google_compute_network.vpc.name
+      #subnetwork              = data.google_compute_subnetwork.composer_subnet.name
       service_account      = var.composer_service_account
       disk_size_gb         = var.disk_size
       oauth_scopes         = var.oauth_scopes

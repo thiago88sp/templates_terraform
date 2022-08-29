@@ -4,8 +4,8 @@
 #}
 
 data "google_compute_zones" "available" {
-  project = var.project_id
-  region  = var.region
+  project = var.project_id_gce
+  region  = var.region_gce
 }
 
 resource "random_id" "name_suffix" {
@@ -18,9 +18,9 @@ resource "random_id" "name_suffix" {
 
 resource "google_compute_instance" "default" {
   name           = var.vmname
-  project        = var.project_id
+  project        = var.project_id_gce
   machine_type   = var.machine_type
-  zone           = var.zone
+  zone           = var.zone_gce
   desired_status = var.desired_status
   labels         = var.labels
 
@@ -84,9 +84,9 @@ resource "google_compute_instance" "default" {
 
 resource "google_compute_disk" "datadisk" {
   name    = "datadisk-${random_id.name_suffix.hex}"
-  project = var.project_id
+  project = var.project_id_gce
   type    = "pd-ssd"
-  zone    = var.zone
+  zone    = var.zone_gce
 
   labels = {
     environment = "dev"

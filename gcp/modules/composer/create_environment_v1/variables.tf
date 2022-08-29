@@ -1,4 +1,4 @@
-variable "project_id" {
+variable "project_id_composer" {
   description = "Project ID where Cloud Composer Environment is created."
   type        = string
 }
@@ -8,7 +8,7 @@ variable "composer_env_name" {
   type        = string
 }
 
-variable "region" {
+variable "region_composer" {
   description = "Region where the Cloud Composer Environment is created."
   type        = string
   default     = "us-central1"
@@ -20,11 +20,18 @@ variable "labels" {
   default     = {}
 }
 
+variable "net_project_id" {
+  type        = string
+  description = "The project ID of the shared VPC's host (for shared vpc support)"
+  default     = "terraformproject-359719"
+}
+
 variable "network_project_id" {
   type        = string
   description = "The project ID of the shared VPC's host (for shared vpc support)"
-  default     = ""
+  default     = "terraformproject-359719"
 }
+
 
 variable "subnetwork_region" {
   type        = string
@@ -32,7 +39,7 @@ variable "subnetwork_region" {
   default     = ""
 }
 
-variable "zone" {
+variable "zone_composer" {
   description = "Zone where the Cloud Composer nodes are created."
   type        = string
   default     = "us-central1-f"
@@ -48,7 +55,7 @@ variable "machine_type" {
   description = "Machine type of Cloud Composer nodes."
   type        = string
   #default     = "n1-standard-8"
-  default     = "e2-standard-2"
+  default = "e2-standard-2"
 }
 
 variable "machine_type_db" {
