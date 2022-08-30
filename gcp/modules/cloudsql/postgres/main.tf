@@ -34,7 +34,7 @@ resource "google_service_networking_connection" "private_vpc_connection" {
 resource "google_sql_database_instance" "instance" {
 
   #name                    = "private-instance-${random_id.db_name_suffix.hex}"
-  name             = "${var.cloudsql_projectid}-postgres"
+  name             = var.cloudsql_name
   region           = var.region_cloudsql
   database_version = var.postgres_version
   project          = var.cloudsql_projectid
@@ -49,7 +49,7 @@ resource "google_sql_database_instance" "instance" {
 
 
   settings {
-    tier = "db-f1-micro"
+    tier = "db-lightweight-2"
     ip_configuration {
       ipv4_enabled    = false
       private_network = data.google_compute_network.vpc.id

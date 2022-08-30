@@ -5,11 +5,15 @@
 module "cloudsqlpostgres" {
   source = "./cloudsql/postgres"
 
-  cloudsql_projectid = "terraformproject-359719"
-  region_cloudsql    = "southamerica-east1"
+  cloudsql_name      = "fidis-cloud-sql-postgres-nonprod"
+  cloudsql_projectid = "banco-fidis-nonprod"
+  region_cloudsql    = "us-central1"
   availability_type  = "ZONAL"
-  zone_cloudsql      = "southamerica-east1-a"
-  #network_project_id = var.network_project_id
+  zone_cloudsql      = "us-central1-b"
+  disk_type          = "PD_HDD"
+  disk_size          = "200"
+
+
 
 }
 

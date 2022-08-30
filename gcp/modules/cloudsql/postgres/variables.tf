@@ -1,3 +1,8 @@
+variable "cloudsql_name" {
+  description = "Name of resource"
+  type        = string
+}
+
 variable "cloudsql_projectid" {
   description = "The project ID to host the database in."
   type        = string
@@ -12,7 +17,7 @@ variable "net_project_id" {
 variable "postgres_version" {
   description = "The engine version of the database, e.g. `POSTGRES_14`. See https://cloud.google.com/sql/docs/db-versions for supported versions."
   type        = string
-  default     = "POSTGRES_14"
+  default     = "POSTGRES_12"
 }
 
 variable "region_cloudsql" {
