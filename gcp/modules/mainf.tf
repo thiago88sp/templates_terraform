@@ -40,7 +40,7 @@ module "compute_engine" {
   zone_gce           = "southamerica-east1-a"
   nginx_install      = true
   #network_project_id = var.network_project_id
-
+  datadisk_list      = var.datadisk_list
 }
 
 

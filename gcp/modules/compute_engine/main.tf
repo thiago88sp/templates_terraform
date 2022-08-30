@@ -71,27 +71,14 @@ resource "google_compute_instance" "default" {
   # Additional disks to attach to the instance
   # ---------------------------------------------------------------------------------------------------------------------
 
-  attached_disk {
-    source = google_compute_disk.datadisk.name
-    mode   = var.mode
+
+  dynamic "attached_disk" {
+    for_each = { for disk in var.datadisk_list : disk.name => disk }
+    content {
+      source = attached_disk.value.name
+      mode   = var.mode
+    }
   }
+
+  depends_on = [google_compute_disk.datadisk]
 }
-
-
-# ---------------------------------------------------------------------------------------------------------------------
-# DATA DISK
-# ---------------------------------------------------------------------------------------------------------------------
-
-resource "google_compute_disk" "datadisk" {
-  name    = "datadisk-${random_id.name_suffix.hex}"
-  project = var.project_id_gce
-  type    = "pd-ssd"
-  zone    = var.zone_gce
-
-  labels = {
-    environment = "dev"
-  }
-  physical_block_size_bytes = 4096
-  size                      = "250"
-}
-

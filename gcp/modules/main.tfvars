@@ -1,12 +1,13 @@
 gcp_project_id                = "terraformproject-359719"
 project_id_composer           = "terraformproject-359719"
 project_id                    = "terraformproject-359719"
-region                        = "southamerica-east1"
-region_cloudsql               = "southamerica-east1"
-region_composer               = "southamerica-east1"
+region                        = "us-central1"
+region_cloudsql               = "us-central1"
+region_composer               = "us-central1"
 availability_type             = "ZONAL"
-zone                          = "southamerica-east1-a"
-zone_composer                 = "southamerica-east1-a"
+zone                          = "us-central1-a"
+zone_composer                 = "us-central1-a"
+zone_gce                      = "us-central1-a"
 composer_env_name             = "composer-test"
 vmname                        = "teste"
 nginx_install                 = true
@@ -17,3 +18,15 @@ cluster_secondary_range_cidr  = "10.0.0.0/24"
 services_secondary_range_name = "services"
 services_secondary_range_cidr = "10.0.1.0/24"
 environment                   = "dev"
+
+
+datadisk_list                 = [
+    {
+        name = "datadisk-01"
+        size = "250"
+    },
+        {
+        name = "datadisk-02"
+        size = "100"
+    }
+]

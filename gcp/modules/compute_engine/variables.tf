@@ -14,6 +14,12 @@ variable "net_project_id" {
   default     = "terraformproject-359719"
 }
 
+variable "datadisk_list" {
+  type      = any
+  description = ""
+  default = []
+}
+
 variable "region_gce" {
   type        = string
   description = "project id"
@@ -22,7 +28,7 @@ variable "region_gce" {
 variable "machine_type" {
   type        = string
   description = "The machine type to create."
-  default     = "e2-standard-2"
+  default     = "e2-small"
 }
 
 variable "labels" {

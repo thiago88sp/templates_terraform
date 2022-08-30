@@ -24,6 +24,7 @@ variable "subnetwork" {
 } */
 
 
+
 variable "region" {
   description = "The project ID to host the database in."
   type        = string
@@ -204,3 +205,8 @@ variable "environment" {
   default     = ""
 }
 
+variable "datadisk_list" {
+  type      = any
+  description = ""
+  default = []
+}
