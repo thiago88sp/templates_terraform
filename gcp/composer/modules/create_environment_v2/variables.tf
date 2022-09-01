@@ -1,6 +1,7 @@
 variable "project_id" {
   description = "Project ID where Cloud Composer Environment is created."
   type        = string
+  default     = "terraformproject-359719"
 }
 
 variable "composer_env_name" {
@@ -57,7 +58,8 @@ variable "subnetwork_region" {
 variable "composer_service_account" {
   description = "Service Account for running Cloud Composer."
   type        = string
-  default     = null
+  #default     = null
+  default     = "terraform@terraformproject-359719.iam.gserviceaccount.com"
 }
 
 variable "pod_ip_allocation_range_name" {

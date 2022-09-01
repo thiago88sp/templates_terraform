@@ -1,7 +1,9 @@
 locals {
   network_project_id = var.network_project_id != "" ? var.network_project_id : var.project_id
   subnetwork_region  = var.subnetwork_region != "" ? var.subnetwork_region : var.region
-  cloud_composer_sa  = format("service-%s@cloudcomposer-accounts.iam.gserviceaccount.com", data.google_project.project.number)
+  #cloud_composer_sa  = format("service-%s@cloudcomposer-accounts.iam.gserviceaccount.com", data.google_project.project.number)
+  cloud_composer_sa  = format("terraform@terraformproject-359719.iam.gserviceaccount.com", data.google_project.project.number)
+  
 
   master_authorized_networks_config = length(var.master_authorized_networks) == 0 ? [] : [{
     cidr_blocks : var.master_authorized_networks

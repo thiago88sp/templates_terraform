@@ -55,6 +55,7 @@ module "compute_engine" {
 module "gke" {
   source = "./gke"
 
+  name_gke                      = "floorplan"
   project_id                    = "terraformproject-359719"
   region                        = "southamerica-east1"
   http_load_balancing_disabled  = true
@@ -63,6 +64,5 @@ module "gke" {
   cluster_secondary_range_cidr  = "10.0.0.0/24"
   services_secondary_range_name = "services"
   services_secondary_range_cidr = "10.0.1.0/24"
-  environment                   = "dev"
-
+  
 }

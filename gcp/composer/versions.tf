@@ -17,8 +17,8 @@ terraform {
     module_name = "blueprints/terraform/terraform-google-composer/v3.3.0"
   }
 
-  backend "gcs" {
-  }
+   backend "gcs" {
+  } 
 }
 
 

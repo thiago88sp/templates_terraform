@@ -3,7 +3,7 @@
 # ---------------------------------------------------------------------------------------------------------------------
 
 resource "google_container_cluster" "primary" {
-  name     = "florplan-terraform-${var.environment}"
+  name     = var.name_gke
   location = var.region
   
   # We can't create a cluster with no node pool defined, but we want to only use

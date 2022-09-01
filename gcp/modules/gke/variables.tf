@@ -110,7 +110,7 @@ variable "services_secondary_range_cidr" {
   type = string
 }
 
-variable "environment" {
+variable "name_gke" {
   type  = string
   description = ""
   default = ""
