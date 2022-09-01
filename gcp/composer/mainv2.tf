@@ -7,14 +7,14 @@ module "composer-environment" {
   project_id                       = var.project_id
   composer_env_name                = var.composer_env_name
   region                           = var.region
-  #composer_service_account         = var.composer_service_account
+  composer_service_account         = var.composer_service_account
   network                          = data.google_compute_network.vpc.name
   subnetwork                       = data.google_compute_subnetwork.composer_subnet.name
   #pod_ip_allocation_range_name     = var.pod_ip_allocation_range_name
   #service_ip_allocation_range_name = var.service_ip_allocation_range_name
   pod_ip_allocation_range_name     = "pods"
   service_ip_allocation_range_name = "services"
-  grant_sa_agent_permission        = false
+  grant_sa_agent_permission        = true
   environment_size                 = "ENVIRONMENT_SIZE_SMALL"
   scheduler = {
     cpu        = 0.5

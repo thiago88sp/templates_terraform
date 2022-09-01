@@ -1,8 +1,8 @@
 locals {
   network_project_id = var.network_project_id != "" ? var.network_project_id : var.project_id
   subnetwork_region  = var.subnetwork_region != "" ? var.subnetwork_region : var.region
-  #cloud_composer_sa  = format("service-%s@cloudcomposer-accounts.iam.gserviceaccount.com", data.google_project.project.number)
-  cloud_composer_sa  = format("terraform@terraformproject-359719.iam.gserviceaccount.com", data.google_project.project.number)
+  cloud_composer_sa  = format("service-%s@cloudcomposer-accounts.iam.gserviceaccount.com", data.google_project.project.number)
+  #cloud_composer_sa  = format("terraform@terraformproject-359719.iam.gserviceaccount.com", data.google_project.project.number)
   
 
   master_authorized_networks_config = length(var.master_authorized_networks) == 0 ? [] : [{
@@ -25,7 +25,7 @@ resource "google_composer_environment" "composer_env" {
     node_config {
       network              = "projects/${local.network_project_id}/global/networks/${var.network}"
       subnetwork           = "projects/${local.network_project_id}/regions/${local.subnetwork_region}/subnetworks/${var.subnetwork}"
-      service_account      = var.composer_service_account
+      #service_account      = var.composer_service_account
       tags                 = var.tags
       enable_ip_masq_agent = var.enable_ip_masq_agent
 

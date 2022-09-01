@@ -58,8 +58,7 @@ variable "subnetwork_region" {
 variable "composer_service_account" {
   description = "Service Account for running Cloud Composer."
   type        = string
-  #default     = null
-  default     = "terraform@terraformproject-359719.iam.gserviceaccount.com"
+  default     = null
 }
 
 variable "pod_ip_allocation_range_name" {
