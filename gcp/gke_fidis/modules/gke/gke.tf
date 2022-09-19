@@ -2,7 +2,7 @@
 # GKE cluster
 # ---------------------------------------------------------------------------------------------------------------------
 
-resource "google_container_cluster" "primary" {
+resource "google_container_cluster" "gke" {
   name     = "florplan-terraform-${var.environment}"
   location = var.region
   
@@ -64,9 +64,9 @@ resource "google_container_cluster" "primary" {
 # ---------------------------------------------------------------------------------------------------------------------
 
 resource "google_container_node_pool" "primary_nodes" {
-  name       = "${google_container_cluster.primary.name}-node-pool"
+  name       = "${google_container_cluster.gke.name}-node-pool"
   location   = var.region
-  cluster    = google_container_cluster.primary.name
+  cluster    = google_container_cluster.gke.name
   node_count = var.gke_num_nodes
   
   node_config {
@@ -80,7 +80,7 @@ resource "google_container_node_pool" "primary_nodes" {
     }
 
     # preemptible  = true
-    machine_type = "n1-standard-1"
+    machine_type = "e2-small"
     tags         = ["gke-node", "${var.project_id}-gke"]
     metadata = {
       disable-legacy-endpoints = "true"

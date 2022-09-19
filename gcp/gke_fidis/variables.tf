@@ -5,7 +5,7 @@ variable "project_id" {
 
 variable "region" {
   description = "region"
-  default = "us-central1"
+  default     = "us-central1"
 }
 
 
@@ -63,8 +63,8 @@ variable "services_secondary_range_cidr" {
 
 
 variable "environment" {
-  type  = string
+  type        = string
   description = ""
-  default = ""
+  default     = ""
 }
 

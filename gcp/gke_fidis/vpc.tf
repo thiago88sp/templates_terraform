@@ -15,10 +15,12 @@
 #Consume existing VPC
 data "google_compute_network" "vpc" {
   name = "vpc-banco-fidis-nonprod"
+  project= var.project_id
 }
 
 #Consume existing Subnet
 data "google_compute_subnetwork" "gke_subnet" {
+  project= var.project_id
   name   = "subnet-bancofidis-nonprod-invalid"
   region = "southamerica-east1"
 }

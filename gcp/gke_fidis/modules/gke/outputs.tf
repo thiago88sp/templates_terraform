@@ -9,11 +9,11 @@ output "project_id" {
 }
 
 output "kubernetes_cluster_name" {
-  value       = google_container_cluster.primary.name
+  value       = google_container_cluster.gke.name
   description = "GKE Cluster Name"
 }
 
 output "kubernetes_cluster_host" {
-  value       = google_container_cluster.primary.endpoint
+  value       = google_container_cluster.gke.endpoint
   description = "GKE Cluster Host"
 }
